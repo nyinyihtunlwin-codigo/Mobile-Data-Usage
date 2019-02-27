@@ -20,19 +20,14 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Year : 2008"
+                    android:gravity="center"
                     android:paddingTop="@dimen/margin_medium"
-                    android:paddingBottom="@dimen/margin_medium"
+                    android:paddingBottom="@dimen/margin_medium_2"
+                    android:background="@drawable/bg_border_gray"
                     android:paddingStart="@dimen/margin_medium"
                     android:textSize="@dimen/text_regular_2x"
                     android:textColor="@color/colorAccent"
                     android:textStyle="bold"/>
-            <ImageView
-                    android:id="@+id/ivOverall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_medium"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_trending_down_24dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -68,7 +63,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0.000543"
+                    android:text="-"
                     android:drawableEnd="@drawable/ic_arrow_upward_24dp"
                     android:paddingEnd="@dimen/margin_medium"
                     android:textColor="@color/secondary_text"
@@ -89,7 +84,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0.000543"
+                    android:text="-"
                     android:drawableEnd="@drawable/ic_arrow_upward_24dp"
                     android:paddingEnd="@dimen/margin_medium"
                     android:textColor="@color/secondary_text"
@@ -110,7 +105,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0.000543"
+                    android:text="-"
                     android:drawableEnd="@drawable/ic_arrow_downward_24dp"
                     android:paddingEnd="@dimen/margin_medium"
                     android:textColor="@color/secondary_text"
@@ -131,11 +126,47 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0.000543"
+                    android:text="-"
                     android:drawableEnd="@drawable/ic_arrow_upward_24dp"
                     android:paddingEnd="@dimen/margin_medium"
                     android:textColor="@color/secondary_text"
                     style="@style/QuarterItemStyle"/>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:orientation="horizontal">
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/margin_medium_2"
+                    android:paddingBottom="@dimen/margin_medium"
+                    android:gravity="center"
+                    android:text="@string/total"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:textColor="@color/primary_text"/>
+            <TextView
+                    android:id="@+id/tvTotalData"
+                    android:layout_width="0dp"
+                    android:layout_weight=".8"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="-"
+                    android:paddingTop="@dimen/margin_medium_2"
+                    android:paddingBottom="@dimen/margin_medium"
+                    android:paddingEnd="@dimen/margin_medium"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:textColor="@color/primary_text"/>
+            <ImageView
+                    android:id="@+id/ivOverallCondition"
+                    android:layout_width="0dp"
+                    android:layout_weight=".2"
+                    android:layout_height="match_parent"
+            android:src="@drawable/ic_trending_down_24dp"/>
         </LinearLayout>
 
     </LinearLayout>

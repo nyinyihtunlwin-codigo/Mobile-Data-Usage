@@ -3,6 +3,7 @@ package com.nyinyihtunlwin.mdusage.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
+import com.nyinyihtunlwin.mdusage.utils.AppConstants
 import com.nyinyihtunlwin.mdusage.viewholders.BaseViewHolder
 import java.util.ArrayList
 

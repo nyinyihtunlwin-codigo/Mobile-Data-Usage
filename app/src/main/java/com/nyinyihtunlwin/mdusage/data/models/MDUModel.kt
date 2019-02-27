@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.nyinyihtunlwin.mdusage.data.vos.QuarterDUsageVO
 import com.nyinyihtunlwin.mdusage.data.vos.RecordVO
 import com.nyinyihtunlwin.mdusage.data.vos.YearDUsageVO
+import com.nyinyihtunlwin.mdusage.utils.AppConstants
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -32,6 +33,7 @@ class MDUModel : BaseModel() {
             .subscribe({
                 if(it!=null && it.isSuccess){
                    if(it.result != null && it.result.records!!.isNotEmpty()){
+                       AppConstants.lastDataValue = 0.0
                        responseLD.value = getAnnualRecords(it.result.records)
                    }
                 }else{
@@ -50,21 +52,24 @@ class MDUModel : BaseModel() {
             val year = recParts[0].toInt()
             val quarter = recParts[1]
 
-            val yearDUsage = YearDUsageVO()
-            yearDUsage.year = year
 
-            val quarterDUsage = QuarterDUsageVO(quarter,record.volOfMobileData!!.toDouble())
-            yearDUsage.setQuarterData(quarter,quarterDUsage)
+            if(year in 2008..2018){
+                val yearDUsage = YearDUsageVO()
+                yearDUsage.year = year
 
-            var isExist = false
-            for(annualRec in annualUsageList){
-                if(annualRec.year == year){
-                    isExist = true
-                    annualRec.setQuarterData(quarter,quarterDUsage)
+                val quarterDUsage = QuarterDUsageVO(quarter,record.volOfMobileData!!.toDouble())
+                yearDUsage.setQuarterData(quarter,quarterDUsage)
+
+                var isExist = false
+                for(annualRec in annualUsageList){
+                    if(annualRec.year == year){
+                        isExist = true
+                        annualRec.setQuarterData(quarter,quarterDUsage)
+                    }
                 }
-            }
-            if(!isExist){
-                annualUsageList.add(yearDUsage)
+                if(!isExist){
+                    annualUsageList.add(yearDUsage)
+                }
             }
         }
         return annualUsageList

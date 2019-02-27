@@ -8,4 +8,5 @@
     <string name="quarter">Quarter</string>
     <string name="vol_of_mob_data">Mobile Data (Petabytes)</string>
     <string name="msg_generic_no_data">No data found!</string>
+    <string name="total">Total</string>
 </resources>

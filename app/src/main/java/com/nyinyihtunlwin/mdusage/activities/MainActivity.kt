@@ -11,6 +11,7 @@ import com.nyinyihtunlwin.mdusage.adapters.AnnualRecordsRecyclerAdapter
 import com.nyinyihtunlwin.mdusage.data.vos.YearDUsageVO
 import com.nyinyihtunlwin.mdusage.mvp.presenters.MDUPresenter
 import com.nyinyihtunlwin.mdusage.mvp.views.MDUView
+import com.nyinyihtunlwin.mdusage.utils.AppConstants
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
