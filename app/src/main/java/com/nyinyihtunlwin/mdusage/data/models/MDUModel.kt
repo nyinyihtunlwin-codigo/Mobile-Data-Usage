@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.nyinyihtunlwin.mdusage.data.vos.QuarterDUsageVO
 import com.nyinyihtunlwin.mdusage.data.vos.RecordVO
 import com.nyinyihtunlwin.mdusage.data.vos.YearDUsageVO
-import com.nyinyihtunlwin.mdusage.network.responses.MDUResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -25,16 +24,15 @@ class MDUModel : BaseModel() {
     }
 
     fun getDataUsage(resourceId: String,
-                             responseLD: MutableLiveData<MDUResponse>,
+                             responseLD: MutableLiveData<List<YearDUsageVO>>,
                              errorLd: MutableLiveData<String>) {
         mDUsageDisposable = mApi.getMobileDataUsage(resourceId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 if(it!=null && it.isSuccess){
-                    responseLD.value = it
                    if(it.result != null && it.result.records!!.isNotEmpty()){
-                       getAnnualRecords(it.result.records)
+                       responseLD.value = getAnnualRecords(it.result.records)
                    }
                 }else{
                     errorLd.value = "No data found."
@@ -46,7 +44,7 @@ class MDUModel : BaseModel() {
     }
 
     private fun getAnnualRecords(records: List<RecordVO>): List<YearDUsageVO>{
-        var annualUsageList = ArrayList<YearDUsageVO>()
+        val annualUsageList = ArrayList<YearDUsageVO>()
         for(record in records){
             val recParts = record.quarter!!.split("-")
             val year = recParts[0].toInt()

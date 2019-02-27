@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">MDUsage</string>
     <string name="action_settings">Settings</string>
+    <string name="quarter1">Q 1</string>
+    <string name="quarter2">Q 2</string>
+    <string name="quarter3">Q 3</string>
+    <string name="quarter4">Q 4</string>
+    <string name="quarter">Quarter</string>
+    <string name="vol_of_mob_data">Mobile Data (Petabytes)</string>
+    <string name="msg_generic_no_data">No data found!</string>
 </resources>
