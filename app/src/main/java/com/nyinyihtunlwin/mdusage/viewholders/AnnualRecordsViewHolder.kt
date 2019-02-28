@@ -1,6 +1,5 @@
 package com.nyinyihtunlwin.mdusage.viewholders
 
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.nyinyihtunlwin.mdusage.R

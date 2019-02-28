@@ -30,7 +30,11 @@ class MDUModel : BaseModel() {
         mDatabase = MDUDatabase.getDatabase(context)
     }
 
-    fun getDataUsage(
+    fun getDataUsage(): List<YearDUsageVO> {
+       return getAnnualRecords(mDatabase.mduDao().getRecords())
+    }
+
+    fun startLoadingDataUsage(
         resourceId: String,
         responseLD: MutableLiveData<List<YearDUsageVO>>,
         errorLd: MutableLiveData<String>

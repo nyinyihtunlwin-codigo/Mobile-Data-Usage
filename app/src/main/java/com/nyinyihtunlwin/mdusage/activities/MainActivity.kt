@@ -37,7 +37,7 @@ class MainActivity : BaseActivity(), MDUView {
 
         mPresenter.onGetDataUsage("a807b7ab-6cad-4aa6-87d0-e283a7353a0f")
         swipeRefresh.setOnRefreshListener {
-            mPresenter.onGetDataUsage("a807b7ab-6cad-4aa6-87d0-e283a7353a0f")
+            mPresenter.onRefreshDataUsage("a807b7ab-6cad-4aa6-87d0-e283a7353a0f")
         }
 
         mPresenter.mResponseLD.observe(this, Observer {
@@ -67,15 +67,4 @@ class MainActivity : BaseActivity(), MDUView {
         mAdapter.setNewData(recList)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 }

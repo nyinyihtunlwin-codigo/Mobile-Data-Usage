@@ -5,8 +5,9 @@ import com.nyinyihtunlwin.mdusage.data.models.MDUModel
 import com.nyinyihtunlwin.mdusage.data.vos.YearDUsageVO
 import com.nyinyihtunlwin.mdusage.mvp.views.MDUView
 import com.nyinyihtunlwin.mdusage.network.responses.MDUResponse
+import com.nyinyihtunlwin.mdusage.utils.AppUtils
 
-class MDUPresenter:BasePresenter<MDUView>() {
+class MDUPresenter : BasePresenter<MDUView>() {
 
     lateinit var mResponseLD: MutableLiveData<List<YearDUsageVO>>
 
@@ -21,12 +22,30 @@ class MDUPresenter:BasePresenter<MDUView>() {
     override fun onStop() {
     }
 
-    fun onGetDataUsage(resourceId:String){
-        MDUModel.getInstance().getDataUsage(resourceId,mResponseLD,mErrorLD)
+    fun onGetDataUsage(resourceId: String) {
+        if (MDUModel.getInstance().getDataUsage().isEmpty()) {
+            if(AppUtils.getInstance().hasConnection()){
+                mView!!.showLoading()
+                MDUModel.getInstance().startLoadingDataUsage(resourceId, mResponseLD, mErrorLD)
+            }else{
+                mView!!.showPrompt("No internet connection!")
+            }
+        } else {
+            mResponseLD.value = MDUModel.getInstance().getDataUsage()
+        }
     }
 
     override fun onCleared() {
         super.onCleared()
         MDUModel.getInstance().disposeAll()
+    }
+
+    fun onRefreshDataUsage(resourceId: String) {
+        if(AppUtils.getInstance().hasConnection()){
+            mView!!.showLoading()
+            MDUModel.getInstance().startLoadingDataUsage(resourceId, mResponseLD, mErrorLD)
+        }else{
+            mView!!.showPrompt("No internet connection!")
+        }
     }
 }

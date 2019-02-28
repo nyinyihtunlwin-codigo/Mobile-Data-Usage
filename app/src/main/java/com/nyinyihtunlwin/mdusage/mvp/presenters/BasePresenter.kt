@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 
 abstract class BasePresenter<T> : ViewModel()  {
 
-    private var mView: T? = null
+    protected var mView: T? = null
     lateinit var mErrorLD: MutableLiveData<String>
 
     open fun initPresenter(view: T) {
