@@ -1,5 +1,6 @@
 package com.nyinyihtunlwin.mdusage.viewholders
 
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.nyinyihtunlwin.mdusage.R
@@ -23,20 +24,18 @@ class AnnualRecordsViewHolder(itemView: View) : BaseViewHolder<YearDUsageVO>(ite
 
         itemView.ivOverallCondition.visibility = View.GONE
         itemView.tvYear.text = "Year    :   ${data.year.toString()}"
+
         if (data.q1 != null) {
             usageQ1 = data.q1!!.usage
             totalVolumeOfData += usageQ1
             itemView.tvQ1.text = usageQ1.toString()
-            if(data.year == 2008){
-                AppConstants.lastDataValue = 0.0
-            }
-            if (AppConstants.lastDataValue != 0.0) {
-                if (AppConstants.lastDataValue > usageQ1) {
+            if (AppConstants.tmpMap[data.year!! - 1] != null) {
+                if(AppConstants.tmpMap[data.year!! - 1]!! > usageQ1){
                     setDownIcon(itemView.tvQ1)
-                } else {
+                }else{
                     setUpIcon(itemView.tvQ1)
                 }
-            }else{
+            } else {
                 setUpIcon(itemView.tvQ1)
             }
             AppConstants.lastDataValue = usageQ1
@@ -132,6 +131,7 @@ class AnnualRecordsViewHolder(itemView: View) : BaseViewHolder<YearDUsageVO>(ite
         itemView.ivOverallCondition.setOnClickListener {
             //
         }
+        AppConstants.tmpMap[data.year!!] = AppConstants.lastDataValue
     }
 
     private fun setUpIcon(tv: TextView) {

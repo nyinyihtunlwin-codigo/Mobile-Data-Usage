@@ -2,6 +2,7 @@ package com.nyinyihtunlwin.mdusage.data.models
 
 import com.google.gson.Gson
 import com.nyinyihtunlwin.mdusage.network.ApiService
+import com.nyinyihtunlwin.mdusage.persistence.MDUDatabase
 import com.nyinyihtunlwin.mdusage.utils.AppConstants
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -11,7 +12,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 open class BaseModel{
     companion object {
         lateinit var mApi : ApiService
+        lateinit var mDatabase : MDUDatabase
     }
+
+
 
     init {
         val okHttpClient = OkHttpClient().newBuilder().build()
