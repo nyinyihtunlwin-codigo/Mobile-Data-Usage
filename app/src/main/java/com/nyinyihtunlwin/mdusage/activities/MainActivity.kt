@@ -1,19 +1,18 @@
 package com.nyinyihtunlwin.mdusage.activities
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nyinyihtunlwin.mdusage.R
 import com.nyinyihtunlwin.mdusage.adapters.AnnualRecordsRecyclerAdapter
 import com.nyinyihtunlwin.mdusage.data.vos.YearDUsageVO
+import com.nyinyihtunlwin.mdusage.events.DecreaseIconClickedEvent
 import com.nyinyihtunlwin.mdusage.mvp.presenters.MDUPresenter
 import com.nyinyihtunlwin.mdusage.mvp.views.MDUView
-import com.nyinyihtunlwin.mdusage.utils.AppConstants
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import org.greenrobot.eventbus.Subscribe
 
 class MainActivity : BaseActivity(), MDUView {
 
@@ -49,6 +48,11 @@ class MainActivity : BaseActivity(), MDUView {
             showPrompt(it)
         })
 
+    }
+
+    @Subscribe
+    fun onDecreaseIconClicked(event:DecreaseIconClickedEvent){
+        showPrompt("This year (${event.year}) has decrease in volume data.")
     }
 
     override fun showPrompt(message: String) {

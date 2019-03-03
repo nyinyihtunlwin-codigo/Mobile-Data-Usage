@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.nyinyihtunlwin.mdusage.data.models.MDUModel
 import com.nyinyihtunlwin.mdusage.data.vos.YearDUsageVO
 import com.nyinyihtunlwin.mdusage.mvp.views.MDUView
-import com.nyinyihtunlwin.mdusage.network.responses.MDUResponse
 import com.nyinyihtunlwin.mdusage.utils.AppUtils
 
 class MDUPresenter : BasePresenter<MDUView>() {

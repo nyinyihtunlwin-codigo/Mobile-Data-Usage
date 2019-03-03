@@ -4,8 +4,10 @@ import android.view.View
 import android.widget.TextView
 import com.nyinyihtunlwin.mdusage.R
 import com.nyinyihtunlwin.mdusage.data.vos.YearDUsageVO
+import com.nyinyihtunlwin.mdusage.events.DecreaseIconClickedEvent
 import com.nyinyihtunlwin.mdusage.utils.AppConstants
 import kotlinx.android.synthetic.main.view_item_usage.view.*
+import org.greenrobot.eventbus.EventBus
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -128,7 +130,7 @@ class AnnualRecordsViewHolder(itemView: View) : BaseViewHolder<YearDUsageVO>(ite
         }
         itemView.tvTotalData.text = df.format(totalVolumeOfData).toString()
         itemView.ivOverallCondition.setOnClickListener {
-            //
+            EventBus.getDefault().post(DecreaseIconClickedEvent(data.year!!))
         }
         AppConstants.tmpMap[data.year!!] = AppConstants.lastDataValue
     }
