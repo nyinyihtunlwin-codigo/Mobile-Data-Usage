@@ -9,4 +9,5 @@
     <string name="vol_of_mob_data">Mobile Data (Petabytes)</string>
     <string name="msg_generic_no_data">No data found!</string>
     <string name="total">Total</string>
+    <string name="version">Version 1.0</string>
 </resources>

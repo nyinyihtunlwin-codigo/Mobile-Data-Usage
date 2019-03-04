@@ -1,5 +1,7 @@
 package com.nyinyihtunlwin.mdusage.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -15,6 +17,12 @@ import kotlinx.android.synthetic.main.content_main.*
 import org.greenrobot.eventbus.Subscribe
 
 class MainActivity : BaseActivity(), MDUView {
+
+    companion object {
+        fun newInstnace(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
+    }
 
 
     private lateinit var mPresenter: MDUPresenter
@@ -69,6 +77,15 @@ class MainActivity : BaseActivity(), MDUView {
 
     override fun displayAnnualRecordLists(recList: MutableList<YearDUsageVO>) {
         mAdapter.setNewData(recList)
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_HOME)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        android.os.Process.killProcess(android.os.Process.myPid())
+        System.exit(0)
     }
 
 }

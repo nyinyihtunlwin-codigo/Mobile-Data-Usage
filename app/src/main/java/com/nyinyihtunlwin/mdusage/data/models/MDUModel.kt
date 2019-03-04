@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.nyinyihtunlwin.mdusage.data.vos.QuarterDUsageVO
 import com.nyinyihtunlwin.mdusage.data.vos.RecordVO
 import com.nyinyihtunlwin.mdusage.data.vos.YearDUsageVO
+import com.nyinyihtunlwin.mdusage.network.ApiService
 import com.nyinyihtunlwin.mdusage.persistence.MDUDatabase
 import com.nyinyihtunlwin.mdusage.utils.AppConstants
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -31,7 +32,7 @@ class MDUModel : BaseModel() {
     }
 
     fun getDataUsage(): List<YearDUsageVO> {
-       return getAnnualRecords(mDatabase.mduDao().getRecords())
+        return getAnnualRecords(mDatabase.mduDao().getRecords())
     }
 
     fun startLoadingDataUsage(
@@ -58,7 +59,7 @@ class MDUModel : BaseModel() {
             )
     }
 
-    private fun getAnnualRecords(records: List<RecordVO>): List<YearDUsageVO> {
+   private fun getAnnualRecords(records: List<RecordVO>): List<YearDUsageVO> {
         val annualUsageList = ArrayList<YearDUsageVO>()
         for (record in records) {
             val recParts = record.quarter!!.split("-")
