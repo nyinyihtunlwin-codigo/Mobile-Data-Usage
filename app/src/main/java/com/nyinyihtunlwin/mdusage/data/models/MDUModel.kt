@@ -9,12 +9,13 @@ import com.nyinyihtunlwin.mdusage.network.ApiService
 import com.nyinyihtunlwin.mdusage.persistence.MDUDatabase
 import com.nyinyihtunlwin.mdusage.utils.AppConstants
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class MDUModel : BaseModel() {
 
-    private lateinit var mDUsageDisposable: Disposable
+    private var mDUsageDisposable: Disposable = CompositeDisposable()
 
     companion object {
         private var INSTANCE: MDUModel? = null
